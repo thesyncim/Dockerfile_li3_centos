@@ -1,4 +1,3 @@
-
 # lithium + nginx + php-fpm 
 # Version 0.1
 
@@ -28,10 +27,10 @@ ADD admin.spreent.eu.conf /etc/nginx/sites-available/admin.spreent.eu.conf
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
 ADD fpm.conf /etc/php-fpm.d/fpm.conf
+RUN sed -i '/*.conf;/a\ include /etc/nginx/sites-enabled/*;' /etc/nginx/nginx.conf
 
 RUN ln -s /etc/nginx/sites-available/spreent.eu.conf /etc/nginx/sites-enabled/spreent.eu.conf
 RUN ln -s /etc/nginx/sites-available/admin.spreent.eu.conf /etc/nginx/sites-enabled/admin.spreent.eu.conf
-
 
 RUN git clone git://github.com/UnionOfRAD/framework.git /var/www/spreent.eu/public_html  
 RUN cd /var/www/spreent.eu/public_html && git submodule init && git submodule update
@@ -40,7 +39,7 @@ RUN chmod 777 /var/www/spreent.eu/public_html/app/resources/
 RUN git clone git://github.com/UnionOfRAD/framework.git /var/www/admin.spreent.eu/public_html  
 RUN cd /var/www/admin.spreent.eu/public_html && git submodule init && git submodule update
 RUN chmod 777 /var/www/admin.spreent.eu/public_html/app/resources/
-
+ 
 CMD ["/start.sh"]
 
 
