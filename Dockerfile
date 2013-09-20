@@ -14,9 +14,8 @@ RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 
 ADD nginx.repo /etc/yum.repos.d/nginx.repo
 
-RUN yum --enablerepo=remi,remi-test install nginx php-fpm php-common php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml supervidor
+RUN yum --enablerepo=remi,remi-test install nginx php-fpm php-common php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml supervidor -y
 
 
 
 
- 
