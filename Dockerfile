@@ -16,7 +16,7 @@ ADD nginx.repo /etc/yum.repos.d/nginx.repo
 
 RUN echo "root:123456" | chpasswd
 
-RUN yum --enablerepo=remi,remi-test install nginx php-fpm php-common php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml supervidor openssh-server -y
+RUN yum --enablerepo=remi,remi-test install nginx php-fpm php-common php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml git openssh-server -y
 
 RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
