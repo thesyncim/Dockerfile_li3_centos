@@ -26,6 +26,7 @@ RUN mkdir -p /var/www/admin.spreent.eu && mkdir -p /var/www/admin.spreent.eu/log
 ADD spreent.eu.conf /etc/nginx/sites-available/spreent.eu.conf
 ADD admin.spreent.eu.conf /etc/nginx/sites-available/admin.spreent.eu.conf
 ADD start.sh /start.sh
+RUN chmod +x /start.sh
 ADD fpm.conf /etc/php-fpm.d/fpm.conf
 
 RUN ln -s /etc/nginx/sites-available/spreent.eu.conf /etc/nginx/sites-enabled/spreent.eu.conf
