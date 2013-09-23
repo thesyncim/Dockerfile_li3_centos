@@ -17,7 +17,8 @@ RUN echo "root:123456" | chpasswd
 
 RUN yum --enablerepo=remi,remi-test install nginx php-fpm php-common php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml git openssh-server -y
 
-RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config && sed -i 's/;date.timezone =/date.timezone = Europe\/Lisbon/g' /etc/php.ini
+
 
 RUN mkdir -p /var/www/spreent.eu && mkdir -p /var/www/spreent.eu/logs && chown -R apache:apache /var/www/spreent.eu && mkdir /etc/nginx/sites-available && mkdir /etc/nginx/sites-enabled
 RUN mkdir -p /var/www/admin.spreent.eu && mkdir -p /var/www/admin.spreent.eu/logs && chown -R apache:apache /var/www/admin.spreent.eu
@@ -27,6 +28,7 @@ ADD admin.spreent.eu.conf /etc/nginx/sites-available/admin.spreent.eu.conf
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
 ADD fpm.conf /etc/php-fpm.d/fpm.conf
+RUN rm -rf /etc/php-fpm.d/www.conf
 RUN sed -i '/*.conf;/a\ include /etc/nginx/sites-enabled/*;' /etc/nginx/nginx.conf
 
 RUN ln -s /etc/nginx/sites-available/spreent.eu.conf /etc/nginx/sites-enabled/spreent.eu.conf
