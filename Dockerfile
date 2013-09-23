@@ -13,7 +13,7 @@ RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 
 ADD nginx.repo /etc/yum.repos.d/nginx.repo
 
-RUN echo "root:123456" | chpasswd
+RUN echo "root:123456" | chpasswd 
 
 RUN yum --enablerepo=remi,remi-test install nginx php-fpm php-common php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml git openssh-server -y
 
@@ -26,6 +26,7 @@ RUN mkdir -p /var/www/admin.spreent.eu && mkdir -p /var/www/admin.spreent.eu/log
 ADD spreent.eu.conf /etc/nginx/sites-available/spreent.eu.conf
 ADD admin.spreent.eu.conf /etc/nginx/sites-available/admin.spreent.eu.conf
 ADD start.sh /start.sh
+ADD iptables /etc/sysconfig/iptables
 RUN chmod +x /start.sh
 ADD fpm.conf /etc/php-fpm.d/fpm.conf
 RUN rm -rf /etc/php-fpm.d/www.conf
