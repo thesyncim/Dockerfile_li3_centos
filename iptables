@@ -19,12 +19,6 @@ COMMIT
 -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 25 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 465 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 110 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 995 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 143 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 993 -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 COMMIT
 # Completed on Mon Sep 23 08:59:24 2013
- 
